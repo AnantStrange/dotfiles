@@ -1,0 +1,14 @@
+#super + shift + a
+
+#	notify-send hi	
+#maim -f jpg -m 10 | tee /home/anant/Pictures/$( date +%s  ).jpg | xclip --selection clipboard -t image/png
+
+#super + shift + Print
+
+#        maim -f jpg -m 10 -s | tee /home/anant/Pictures/$( date +%s  ).jpg | xclip --selection clipboard -t image/png
+
+mod4 + y
+	yt
+
+mod4 + u
+	maim -f jpg -m 10 -s | tee /home/anant/Pictures/$(date +%s ).jpg | xclip -selection clipboard -t image/png
