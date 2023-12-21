@@ -1,0 +1,94 @@
+#mod4 + y
+#	ytfzf -DNsf
+
+mod4 + Print
+	maim -f jpg -m 10 -s | tee /home/anant/Pictures/Screenshot_$(date "+%d_%b_%H:%M").jpg | xclip -selection clipboard -t image/png
+
+Print
+	maim -f jpg -m 10  | tee /home/anant/Pictures/Screenshot_$(date "+%d_%b_%H:%M").jpg | xclip -selection clipboard -t image/png
+
+mod4 + shift + Print
+	name_screenshot
+F12
+	sudo light -A 5
+
+F11
+	sudo light -U 5
+
+mod4 + n
+	dunstctl history-pop
+
+mod4 + shift +n
+	dunstctl close
+
+F1
+	pamixer --allow-boost -d 5; pkill -RTMIN+8 dwmblocks
+
+mod4 + F1
+	pamixer --allow-boost -d 15; pkill -RTMIN+8 dwmblocks
+
+mod4 + F2
+	pamixer -t ; pkill -RTMIN+8 dwmblocks
+
+F3
+	pamixer --allow-boost -i 5; pkill -RTMIN+8 dwmblocks
+
+mod4 + F3
+	pamixer --allow-boost -i 15; pkill -RTMIN+8 dwmblocks
+
+mod4 + shift + q
+	/home/anant/scripts/power
+
+mod4 + shift + i
+	teams --disable-seccomp-filter-sandbox
+
+mod4 + shift + r
+	dmenurecord
+
+control + shift + r
+	dmenurecord kill
+
+mod4 + r
+	/home/anant/scripts/reload
+
+mod4 + shift + l
+	i3lock-fancy -p
+
+mod4 + Insert
+   echo $(grep -v '^#' ~/.local/share/emoji | dmenu -i -l 40 -fn JoyPixels:pixelsize=19 | cut -d' ' -f1) | xclip -i -r -selection clipboard
+
+mod4 + w
+    brave-browser-nightly
+
+mod4 + BackSpace
+    jgmenu_run > /dev/null
+
+mod4 + shift + p
+    passmenu
+
+mod4 + F9
+    dmenumount
+
+mod4 + F10
+    dmenuumount
+
+mod1 + shift + p
+    passgen
+
+mod4 + shift + w
+    btmenu
+
+mod1 + w
+    (killall transmmission-remote-gtk & killall pavucontrol) & wal -i $( cat /tmp/wallpaper_list | shuf -n1 | tee -a /tmp/wallpaper) && pkill -HUP dwm
+    #wal -i $HOME/Wallpapers && pkill -HUP dwm >/dev/null
+
+mod4 + e
+    thunar
+
+mod1 + Print
+    dmenu_wifi
+
+mod4 + slash
+    findndo
+
+
