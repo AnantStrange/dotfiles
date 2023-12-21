@@ -1,0 +1,133 @@
+#! /bin/sh
+
+# Basic command aliases
+
+( nvim -v>/dev/null 2>&1 ) && alias vi="nvim"
+alias bctl="bluetoothctl"
+alias serve="python3 -m http.server --bind 192.168.0.100 80  --directory"
+alias history="history 0"
+alias hist="history 0"
+alias df="df -h"
+alias du="du -h"
+alias yts="ytfzf -f"
+alias nv="nvim"
+alias pm="pulsemixer"
+alias yt="ytfzf -DNsfq"
+alias gp="grep"
+alias is="ps -aux | grep "
+alias du="du -h"
+alias copy="xclip -r -i -selection clipboard"
+alias tr="transmission-remote"
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+
+alias cls="clear -x"
+
+alias monitor="sudo airmon-ng start enp3s0 && sudo airmon-ng check kill"
+alias manage="sudo airmon-ng stop enp3s0 && sudo systemctl NetworkManager restart"
+alias restore="sudo ifconfig enp3s0 down && sudo iwconfig enp3s0 mode managed && sudo ifconfig enp3s0 up && sudo systemctl restart NetworkManager"
+
+alias syss="bpytop"
+alias sudo="sudo "
+alias timer="termdown"
+alias pwr="sudo powertop"
+alias hst="history 0"
+alias wifi_pass="nmcli -s -g 802-11-wireless-security.psk connection show"
+alias gvim="nvim"
+alias Pictures="~/Pictures/"
+alias Downloads="~/Downloads/"
+alias nvv="sudo nvim"
+
+alias pdf="zathura "
+alias zth="zathura "
+alias lv="% disown %1 %2"
+alias gits="git status"
+
+
+alias wget=wget --hsts-file='$XDG_DATA_HOME/wget-hsts'
+alias xbindkeys=xbindkeys -f '$XDG_CONFIG_HOME'/xbindkeys/config 
+alias ipa="ip a"
+alias rmm="/usr/bin/rm"
+alias clone="git clone"
+alias wget=wget --hsts-file='$XDG_DATA_HOME/wget-hsts'
+
+
+alias connect='curl -kX POST -d"userId=21BCE3820" -d"password=3282" -d"serviceName=ProntoAuthentication" -d"Submit22=Login" "https://phc.prontonetworks.com/cgi-bin/authlogin?URI=http://captive.apple.com/hotspot-detect.html" >/dev/null'
+
+# ls Alises based on if eza available
+
+if eza > /dev/null 2>&1;then
+    alias ls='ls --color=auto'
+    alias ll="eza -lgH --icons"
+    alias la="eza -lagH --icons"
+    alias l="eza -HG --icons"
+else
+    alias ls='ls --color=auto'
+    alias ll="ls -lgH"
+    alias la="ls -lagH"
+    alias l="ls -HG"
+fi
+
+# Trash-cli Alias
+
+alias tp="trash-put"
+alias tl="trash-list"
+alias tl="trash-list"
+alias trr="trash-restore"
+( trash --version > /dev/null 2>&1 ) && alias rm="trash-put"
+
+
+
+# Distro-base Specific package mangager alias
+
+if [ -e /etc/debian_version ];then
+    alias purge="sudo apt purge"
+    alias clean="sudo apt autoremove"
+    alias update="sudo apt-get update & sudo apt-get upgrade"
+    alias info="apt info"
+    alias search="apt seach"
+    alias get="sudo apt install"
+    alias ss="apt search"
+else
+    alias Qo="pacman -Qo"
+    alias get="sudo pacman -S"
+    alias pac="pacman"
+    alias gets="paru -S"
+    alias search="sudo pacman -Ss"
+    alias list="sudo pacman -Sl"
+    alias listb="sudo pacman -Sl blackarch"
+    alias install="sudo pacman -S"
+    alias purge="sudo pacman -Rnsu"
+    alias grp="sudo pacman -Sg | grep "
+    alias si="pacman -Si"
+    alias qi="pacman -Qi"
+    alias ssi="paru -Si"
+    alias ss="pacman -Ss"
+    alias sss="paru -Ss"
+    alias rip="sudo pacman -Rnsuc "
+    alias qo="pacman -Qo"
+fi
+
+
+# Systemctl Alias
+
+alias sys="systemctl"
+alias enable="sudo systemctl enable"
+alias disable="sudo systemctl disable"
+alias stop="sudo systemctl stop"
+alias start="sudo systemctl start"
+alias status="systemctl status"
+alias restart="systemctl restart"
+
+alias ustop="systemctl --user stop"
+alias ustart="systemctl --user start"
+alias urestart="systemctl --user restart"
+alias ustatus="systemctl --user status"
+
+
