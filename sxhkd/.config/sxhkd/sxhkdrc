@@ -1,5 +1,5 @@
-#mod4 + y
-#	ytfzf -DNsf
+mod4 + y
+	ytfzf -DNsf
 
 mod4 + Print
 	maim -f jpg -m 10 -s | tee /home/anant/Pictures/Screenshot_$(date "+%d_%b_%H:%M").jpg | xclip -selection clipboard -t image/png
@@ -35,6 +35,22 @@ F3
 
 mod4 + F3
 	pamixer --allow-boost -i 15; pkill -RTMIN+8 dwmblocks
+
+F5
+    mpc toggle
+F6
+    mpc seek +10
+F4
+    mpc seek -10
+
+mod1 + F6
+    mpc next 
+
+mod1 + F4
+    mpc prev
+
+mod1 + m
+    mpc listall | dmenu -f -l 10 -p "Music >" | (mpc insert && mpc next)
 
 mod4 + shift + q
 	/home/anant/scripts/power
