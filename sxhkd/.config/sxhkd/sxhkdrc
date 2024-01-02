@@ -50,7 +50,7 @@ mod1 + F4
     mpc prev
 
 mod1 + m
-    mpc listall | dmenu -f -l 10 -p "Music >" | (mpc insert && mpc next)
+    searchnplay
 
 mod4 + shift + q
 	/home/anant/scripts/power

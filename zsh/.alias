@@ -122,6 +122,7 @@ alias enable="sudo systemctl enable"
 alias disable="sudo systemctl disable"
 alias stop="sudo systemctl stop"
 alias start="sudo systemctl start"
+alias restart="systemctl restart"
 alias status="systemctl status"
 
 alias ustop="systemctl --user stop"
