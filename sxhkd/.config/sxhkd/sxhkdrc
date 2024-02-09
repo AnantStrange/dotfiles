@@ -39,15 +39,15 @@ mod4 + F3
 F5
     mpc toggle
 F6
-    mpc seek +10
+    mpc next 
 F4
-    mpc seek -10
+    mpc prev
 
 mod1 + F6
-    mpc next 
+    mpc seek +10
 
 mod1 + F4
-    mpc prev
+    mpc seek -10
 
 mod1 + m
     searchnplay

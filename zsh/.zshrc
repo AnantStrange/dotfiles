@@ -22,6 +22,13 @@ execute_myscript() {
     zle reset-prompt
 }
 
+madd() {
+    for url in "$@"; do
+        echo "$url" >> ~/Downloads/links
+        echo "Added: $url"
+    done
+}
+
 zle -N execute_myscript
 bindkey '^[e' execute_myscript
 
