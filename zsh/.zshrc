@@ -32,5 +32,7 @@ madd() {
 zle -N execute_myscript
 bindkey '^[e' execute_myscript
 
+export PATH=$PATH:"$HOME/.local/share/go/bin"
+export GOPATH="$HOME/.local/share/go"
 
 #zprof

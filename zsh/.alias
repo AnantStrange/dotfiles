@@ -132,4 +132,6 @@ alias ureload="systemctl --user reload"
 alias ustatus="systemctl --user status"
 alias uenable="systemctl --user enable"
 
-
+mkcd() {
+    mkdir -p "$1" && cd "$1" || return
+}

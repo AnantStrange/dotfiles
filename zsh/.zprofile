@@ -5,6 +5,7 @@ export PATH=$PATH:"/opt/i2p"
 export PATH=$PATH:"/usr/local/bin"
 export PATH=$PATH:"/opt"
 export PATH=$PATH:"$HOME/anaconda3/bin"
+export PATH=$PATH:"$HOME/.local/share/go/bin"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave-browser-nightly"
@@ -36,6 +37,8 @@ export ZSHZ_DATA="$HOME/.local/share/z"
 export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/lib/jvm/java-11-openjdk/lib
 export ZSH="$HOME/.config/oh-my-zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
+export GOPATH="$HOME/.local/share/go"
+
 
 
 source $HOME/.alias
