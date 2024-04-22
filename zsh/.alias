@@ -65,7 +65,7 @@ alias connect='curl -kX POST -d"userId=21BCE3820" -d"password=3282" -d"serviceNa
 if eza > /dev/null 2>&1;then
     alias ls='ls --color=auto'
     alias ll="eza -lgH --icons"
-    alias la="eza -lagH --icons"
+    alias la="eza -laagH --icons"
     alias l="eza -HG --icons"
 else
     alias ls='ls --color=auto'
@@ -124,6 +124,7 @@ alias stop="sudo systemctl stop"
 alias start="sudo systemctl start"
 alias restart="systemctl restart"
 alias status="systemctl status"
+alias reload="systemctl reload"
 
 alias ustop="systemctl --user stop"
 alias ustart="systemctl --user start"
@@ -131,6 +132,8 @@ alias urestart="systemctl --user restart"
 alias ureload="systemctl --user reload"
 alias ustatus="systemctl --user status"
 alias uenable="systemctl --user enable"
+
+alias gdisk="lsblk -o 'NAME,MOUNTPOINTS,fsused,fsuse%,fsavail,SIZE,FSTYPE,PARTLABEL,PARTUUID'"
 
 mkcd() {
     mkdir -p "$1" && cd "$1" || return
