@@ -1,4 +1,5 @@
 #zmodload zsh/zprof
+
 zstyle ':completion:*' menu select
 HIST_STAMPS="dd/mm/yyyy"
 setopt prompt_subst
@@ -58,10 +59,17 @@ git_prompt_info () {
 
 # git clone https://github.com/agkozak/zsh-z.git ~/.local/share/zsh/zsh-z
 # git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.local/share/zsh/zsh-autosuggestions
+# git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ~/.local/share/zsh/fast-syntax-highlight
+# git clone https://github.com/marlonrichert/zsh-autocomplete.git ~/.local/share/zsh/zsh-autocomplete
+
+
 source ~/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.local/share/zsh/zsh-z/zsh-z.plugin.zsh
+source ~/.local/share/zsh/fast-syntax-highlight/fast-syntax-highlighting.plugin.zsh
+# source ~/.local/share/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 autoload -U +X compinit && compinit
+zmodload -i zsh/complist
 source $HOME/.alias
 
 source /usr/share/fzf/key-bindings.zsh
@@ -85,6 +93,11 @@ set -o emacs
 
 bindkey '\e[1;3D' backward-word  # Alt+Left
 bindkey '\e[1;3C' forward-word   # Alt+Right
+bindkey "^[[1;5C" forward-word   # Ctrl+Left
+bindkey "^[[1;5D" backward-word  # Ctrl+Right
+bindkey "^[[3~" delete-char      # <Del> to delete instead of ~ 
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
 
 
 #zprof

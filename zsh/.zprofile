@@ -38,6 +38,7 @@ export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/lib/jvm/java-11-openjdk/lib
 export ZSH="$HOME/.config/oh-my-zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GOPATH="$HOME/.local/share/go"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 
 

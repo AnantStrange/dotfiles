@@ -33,7 +33,6 @@ alias monitor="sudo airmon-ng start enp3s0 && sudo airmon-ng check kill"
 alias manage="sudo airmon-ng stop enp3s0 && sudo systemctl NetworkManager restart"
 alias restore="sudo ifconfig enp3s0 down && sudo iwconfig enp3s0 mode managed && sudo ifconfig enp3s0 up && sudo systemctl restart NetworkManager"
 
-alias syss="bpytop"
 alias sudo="sudo "
 alias timer="termdown"
 alias pwr="sudo powertop"
@@ -94,6 +93,10 @@ if [ -e /etc/debian_version ];then
     alias search="apt seach"
     alias get="sudo apt install"
     alias ss="apt search"
+elif [ -e /etc/gentoo-release ];then
+    alias em="emerge"
+    alias ss="sudo emerge -avs"
+    alias ssd="sudo emerge -av --search-description"
 else
     alias Qo="pacman -Qo"
     alias get="sudo pacman -S"
@@ -134,6 +137,8 @@ alias ustatus="systemctl --user status"
 alias uenable="systemctl --user enable"
 
 alias gdisk="lsblk -o 'NAME,MOUNTPOINTS,fsused,fsuse%,fsavail,SIZE,FSTYPE,PARTLABEL,PARTUUID'"
+alias ".."="cd .."
+alias "..."="cd ../.."
 
 mkcd() {
     mkdir -p "$1" && cd "$1" || return
