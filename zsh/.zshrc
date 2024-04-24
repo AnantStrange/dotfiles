@@ -36,24 +36,41 @@ function update_prompt() {
         PR_HOST='%F{green}%m%f' # no SSH
     fi
 
-    local return_code="%(?..%F{red}%? ↵%f)"
     local user_host="${PR_USER}%F{cyan}@${PR_HOST} "
     local current_dir="%B%F{blue}%~%f%b"
 
     PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
 ╰─$PR_PROMPT"
-    RPROMPT="${return_code} [Time: ${SECONDS}s]"
-
 }
 
-# Update the prompt whenever the directory changes
 chpwd_functions+=(update_prompt)
-
-# Update the prompt before displaying it
-# precmd_functions+=(update_prompt) # comented to allow adding [chroot] from export,
-
-# Initial call to update the prompt
+precmd_functions+=(update_prompt) 
 update_prompt
+
+function preexec() {
+    timer=$(date +%s%3N)
+}
+
+function precmd() {
+    if [ $timer ]; then
+        local now=$(date +%s%3N)
+        local d_ms=$(($now-$timer))
+        local d_s=$((d_ms / 1000))
+        local ms=$((d_ms % 1000))
+        local s=$((d_s % 60))
+        local m=$(((d_s / 60) % 60))
+        local h=$((d_s / 3600))
+        if ((h > 0)); then elapsed=${h}h${m}m
+        elif ((m > 0)); then elapsed=${m}m${s}s
+        elif ((s >= 10)); then elapsed=${s}.$((ms / 100))s
+        elif ((s > 0)); then elapsed=${s}.$((ms / 10))s
+        else elapsed=${ms}ms
+        fi
+
+        export RPROMPT="%F{cyan}${elapsed} %{$reset_color%}"
+        unset timer
+    fi
+}
 
 
 # git clone https://github.com/agkozak/zsh-z.git ~/.local/share/zsh/zsh-z

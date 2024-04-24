@@ -94,9 +94,19 @@ if [ -e /etc/debian_version ];then
     alias get="sudo apt install"
     alias ss="apt search"
 elif [ -e /etc/gentoo-release ];then
-    alias em="emerge"
-    alias ss="sudo emerge -avs"
+    # -avCD for total upgrade including changed use regardless of upgrade or not
+    # -avND for total upgrade including changed use but only if htey have update else no rebuild
+    alias em="sudo emerge -av"
+    alias ess="sudo emerge -avs"
+    alias ss="eix"
+    alias get="sudo emerge -av"
+    alias getg="sudo emerge -avg"
     alias ssd="sudo emerge -av --search-description"
+    alias si="sudo emerge --info"
+    alias qu="equery uses" # Show the use flags for a package
+    alias qd="equery depends" # Show package dependencies
+    alias news="eselect news read" # Show Gentoo news items
+    alias qo="equery belongs" # Show what package owns the file 
 else
     alias Qo="pacman -Qo"
     alias get="sudo pacman -S"
