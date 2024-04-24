@@ -3,63 +3,57 @@
 zstyle ':completion:*' menu select
 HIST_STAMPS="dd/mm/yyyy"
 setopt prompt_subst
+GIT_PROMPT_EXECUTABLE="haskell"
 
-() {
-local PR_USER PR_USER_OP PR_PROMPT PR_HOST
+source ~/.local/share/zsh/zsh-git-prompt/zshrc.sh
+function update_prompt() {
+    local PR_USER PR_USER_OP PR_PROMPT PR_HOST
 
-# Check the UID
-if [[ $UID -ne 0 ]]; then # normal user
-    PR_USER='%F{green}%n%f'
-    PR_USER_OP='%F{green}%#%f'
-    PR_PROMPT='%f➤ %f'
-else # root
-    PR_USER='%F{red}%n%f'
-    PR_USER_OP='%F{red}%#%f'
-    PR_PROMPT='%F{red}➤ %f'
-fi
+    # Check the UID
+    if [[ $UID -ne 0 ]]; then # normal user
+        PR_USER='%F{green}%n%f'
+        PR_USER_OP='%F{green}%#%f'
+        PR_PROMPT='%f➤ %f'
+    else # root
+        PR_USER='%F{red}%n%f'
+        PR_USER_OP='%F{red}%#%f'
+        PR_PROMPT='%F{red}➤ %f'
+    fi
 
-# Check if we are on SSH or not
-if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-    PR_HOST='%F{red}%M%f' # SSH
-else
-    PR_HOST='%F{green}%m%f' # no SSH
-fi
+    # Check if we are on SSH or not
+    if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+        PR_HOST='%F{red}%M%f' # SSH
+    else
+        PR_HOST='%F{green}%m%f' # no SSH
+    fi
 
-local return_code="%(?..%F{red}%? ↵%f)"
-local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
-local current_dir="%B%F{blue}%~%f%b"
-local git_branch='$(git_prompt_info)'
+    local return_code="%(?..%F{red}%? ↵%f)"
+    local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
+    local current_dir="%B%F{blue}%~%f%b"
+    local git_branch='$(git_prompt_info)'
 
-PROMPT="╭─${user_host} ${current_dir} ${git_branch}
+    PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
 ╰─$PR_PROMPT"
-RPROMPT="${return_code}"
+    RPROMPT="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="›%f"
-ZSH_THEME_RUBY_PROMPT_PREFIX="%F{red}‹"
-ZSH_THEME_RUBY_PROMPT_SUFFIX="›%f"
-
+    ZSH_THEME_RUBY_PROMPT_PREFIX="%F{red}‹"
+    ZSH_THEME_RUBY_PROMPT_SUFFIX="›%f"
 }
 
-git_prompt_info () {
-    if ! __git_prompt_git rev-parse --git-dir &> /dev/null || [[ "$(__git_prompt_git config --get oh-my-zsh.hide-info 2>/dev/null)" == 1 ]]
-    then
-        return 0
-    fi
-    local ref
-    ref=$(__git_prompt_git symbolic-ref --short HEAD 2> /dev/null)  || ref=$(__git_prompt_git describe --tags --exact-match HEAD 2> /dev/null)  || ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null)  || return 0
-    local upstream
-    if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} ))
-    then
-        upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null)  && upstream=" -> ${upstream}"
-    fi
-    echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
-}
+# Update the prompt whenever the directory changes
+chpwd_functions+=(update_prompt)
+
+# Update the prompt before displaying it
+precmd_functions+=(update_prompt)
+
+# Initial call to update the prompt
+update_prompt
 
 
 # git clone https://github.com/agkozak/zsh-z.git ~/.local/share/zsh/zsh-z
 # git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.local/share/zsh/zsh-autosuggestions
 # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ~/.local/share/zsh/fast-syntax-highlight
+# git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.local/share/zsh/zsh-git-prompt
 # git clone https://github.com/marlonrichert/zsh-autocomplete.git ~/.local/share/zsh/zsh-autocomplete
 
 

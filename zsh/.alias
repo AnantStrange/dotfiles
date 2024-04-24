@@ -127,7 +127,7 @@ alias stop="sudo systemctl stop"
 alias start="sudo systemctl start"
 alias restart="systemctl restart"
 alias status="systemctl status"
-alias reload="systemctl reload"
+alias sreload="systemctl reload"
 
 alias ustop="systemctl --user stop"
 alias ustart="systemctl --user start"
