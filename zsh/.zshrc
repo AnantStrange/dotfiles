@@ -18,13 +18,6 @@ source ~/.local/share/zsh/zsh-git-prompt/zshrc.sh
 function update_prompt() {
     local PR_USER PR_USER_OP PR_PROMPT PR_HOST
 
-    # Check if we're in a chroot
-    if [[ -e /proc/1/root ]] && [[ "$(stat -c '%d' /)" != "$(stat -c '%d' /proc/1/root)" ]]; then
-        PR_CHROOT='%F{yellow}[chroot]%f '
-    else
-        PR_CHROOT=''
-    fi
-
     # Check the UID
     if [[ $UID -ne 0 ]]; then # normal user
         PR_USER='%F{green}%n%f'
@@ -44,23 +37,20 @@ function update_prompt() {
     fi
 
     local return_code="%(?..%F{red}%? ↵%f)"
-    local user_host="${PR_USER}%F{cyan}@${PR_HOST} ${PR_CHROOT}"
+    local user_host="${PR_USER}%F{cyan}@${PR_HOST} "
     local current_dir="%B%F{blue}%~%f%b"
-    local git_branch='$(git_prompt_info)'
 
     PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
 ╰─$PR_PROMPT"
-    RPROMPT="${return_code}"
+    RPROMPT="${return_code} [Time: ${SECONDS}s]"
 
-    ZSH_THEME_RUBY_PROMPT_PREFIX="%F{red}‹"
-    ZSH_THEME_RUBY_PROMPT_SUFFIX="›%f"
 }
 
 # Update the prompt whenever the directory changes
 chpwd_functions+=(update_prompt)
 
 # Update the prompt before displaying it
-precmd_functions+=(update_prompt)
+# precmd_functions+=(update_prompt) # comented to allow adding [chroot] from export,
 
 # Initial call to update the prompt
 update_prompt
