@@ -1,7 +1,16 @@
 #zmodload zsh/zprof
 
 zstyle ':completion:*' menu select
+
 HIST_STAMPS="dd/mm/yyyy"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.zsh_history
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+
 setopt prompt_subst
 GIT_PROMPT_EXECUTABLE="haskell"
 
