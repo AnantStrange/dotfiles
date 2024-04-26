@@ -22,19 +22,20 @@ mod4 + shift +n
 	dunstctl close
 
 F1
-	pamixer --allow-boost -d 5; pkill -RTMIN+8 dwmblocks
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+21 dwmblocks
 
 mod4 + F1
-	pamixer --allow-boost -d 15; pkill -RTMIN+8 dwmblocks
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15-; pkill -RTMIN+21 dwmblocks
 
 mod4 + F2
-	pamixer -t ; pkill -RTMIN+8 dwmblocks
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+21 dwmblocks
 
 F3
-	pamixer --allow-boost -i 5; pkill -RTMIN+8 dwmblocks
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+21 dwmblocks
 
 mod4 + F3
-	pamixer --allow-boost -i 15; pkill -RTMIN+8 dwmblocks
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; pkill -RTMIN+21 dwmblocks
+
 
 F5
     mpc toggle

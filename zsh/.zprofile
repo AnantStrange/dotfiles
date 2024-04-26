@@ -39,7 +39,7 @@ export ZSH="$HOME/.config/oh-my-zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GOPATH="$HOME/.local/share/go"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
+export CCACHE_DIR="/var/cache/ccache"
 
 
 source $HOME/.alias

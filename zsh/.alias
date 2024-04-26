@@ -97,6 +97,7 @@ elif [ -e /etc/gentoo-release ];then
     # -avCD for total upgrade including changed use regardless of upgrade or not
     # -avND for total upgrade including changed use but only if htey have update else no rebuild
     alias em="sudo emerge -av"
+    alias eq="equery"
     alias ess="sudo emerge -avs"
     alias ss="eix"
     alias get="sudo emerge -av"
