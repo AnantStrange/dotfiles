@@ -63,9 +63,9 @@ alias connect='curl -kX POST -d"userId=21BCE3820" -d"password=3282" -d"serviceNa
 
 if eza > /dev/null 2>&1;then
     alias ls='ls --color=auto'
-    alias ll="eza -lgH --icons"
-    alias la="eza -laagH --icons"
-    alias l="eza -HG --icons"
+    alias ll="eza -lgH --icons=always"
+    alias la="eza -laagH --icons=always"
+    alias l="eza -HG --icons=always"
 else
     alias ls='ls --color=auto'
     alias ll="ls -lgH"

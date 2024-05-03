@@ -10,10 +10,10 @@ Print
 mod4 + shift + Print
 	name_screenshot
 F12
-	sudo light -A 5
+	light -A 5
 
 F11
-	sudo light -U 5
+	light -U 5
 
 mod4 + n
 	dunstctl history-pop
@@ -25,7 +25,7 @@ F1
 	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+21 dwmblocks
 
 mod4 + F1
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15-; pkill -RTMIN+21 dwmblocks
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; pkill -RTMIN+21 dwmblocks
 
 mod4 + F2
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+21 dwmblocks
@@ -75,6 +75,7 @@ mod4 + Insert
    echo $(grep -v '^#' ~/.local/share/emoji | dmenu -i -l 40 -fn JoyPixels:pixelsize=19 | cut -d' ' -f1) | xclip -i -r -selection clipboard
 
 mod4 + w
+    brave-bin
     brave-browser-nightly
 
 mod4 + BackSpace
