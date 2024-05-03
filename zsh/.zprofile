@@ -40,6 +40,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export GOPATH="$HOME/.local/share/go"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export CCACHE_DIR="/var/cache/ccache"
+export github="git@github.com:AnantStrange/StrangeChat.git"
+
 
 
 source $HOME/.alias

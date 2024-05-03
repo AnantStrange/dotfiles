@@ -1,4 +1,4 @@
-#zmodload zsh/zprof
+# zmodload zsh/zprof
 
 zstyle ':completion:*' menu select
 
@@ -85,7 +85,13 @@ source ~/.local/share/zsh/zsh-z/zsh-z.plugin.zsh
 source ~/.local/share/zsh/fast-syntax-highlight/fast-syntax-highlighting.plugin.zsh
 # source ~/.local/share/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-autoload -U +X compinit && compinit
+# autoload -U +X compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 zmodload -i zsh/complist
 source $HOME/.alias
 
@@ -117,4 +123,4 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 
 
-#zprof
+# zprof

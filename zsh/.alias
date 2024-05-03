@@ -146,6 +146,7 @@ alias urestart="systemctl --user restart"
 alias ureload="systemctl --user reload"
 alias ustatus="systemctl --user status"
 alias uenable="systemctl --user enable"
+alias udisable="systemctl --user disable"
 
 alias gdisk="lsblk -o 'NAME,MOUNTPOINTS,fsused,fsuse%,fsavail,SIZE,FSTYPE,PARTLABEL,PARTUUID'"
 alias ".."="cd .."
