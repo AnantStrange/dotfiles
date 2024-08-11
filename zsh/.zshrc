@@ -1,4 +1,5 @@
 # zmodload zsh/zprof
+set -o emacs
 
 zstyle ':completion:*' menu select
 
@@ -36,8 +37,17 @@ function update_prompt() {
         PR_HOST='%F{green}%m%f' # no SSH
     fi
 
+    # Check if we are in a Python virtual environment
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        local venv_indicator=' (venv)'
+    else
+        local venv_indicator=''
+    fi
+
     local user_host="${PR_USER}%F{cyan}@${PR_HOST} "
     local current_dir="%B%F{blue}%~%f%b"
+    local current_dir="%B%F{blue}%~${venv_indicator}%f%b"  # Include venv indicator here
+
 
     PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
 ╰─$PR_PROMPT"
@@ -112,7 +122,7 @@ madd() {
 
 zle -N execute_myscript
 bindkey '^[e' execute_myscript
-set -o emacs
+
 
 bindkey '\e[1;3D' backward-word  # Alt+Left
 bindkey '\e[1;3C' forward-word   # Alt+Right
@@ -120,7 +130,6 @@ bindkey "^[[1;5C" forward-word   # Ctrl+Left
 bindkey "^[[1;5D" backward-word  # Ctrl+Right
 bindkey "^[[3~" delete-char      # <Del> to delete instead of ~ 
 bindkey -M menuselect '^[[Z' reverse-menu-complete
-
 
 
 # zprof

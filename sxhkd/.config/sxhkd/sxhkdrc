@@ -10,10 +10,10 @@ Print
 mod4 + shift + Print
 	name_screenshot
 F12
-	light -A 5
+	light -A 5 ; a=$(light -G) ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Brightness" "$a"
 
 F11
-	light -U 5
+	light -U 5 ; a=$(light -G) ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Brightness" "$a"
 
 mod4 + n
 	dunstctl history-pop
@@ -22,19 +22,19 @@ mod4 + shift +n
 	dunstctl close
 
 F1
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+21 dwmblocks
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- & pkill -RTMIN+21 dwmblocks & a=$(echo "`wpctl get-volume @DEFAULT_SINK@ | sed 's/.* //'`" '* 100' | bc | sed 's/\..*/%/') ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Volume" "$a"
 
 mod4 + F1
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; pkill -RTMIN+21 dwmblocks
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%- & pkill -RTMIN+21 dwmblocks & a=$(echo "`wpctl get-volume @DEFAULT_SINK@ | sed 's/.* //'`" '* 100' | bc | sed 's/\..*/%/') ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Volume" "$a"
 
 mod4 + F2
-	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+21 dwmblocks
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle & pkill -RTMIN+21 dwmblocks & notify-send -t 5000 -h string:synchronous:progress "Volume" "MUTED"
 
 F3
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+21 dwmblocks
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ & pkill -RTMIN+21 dwmblocks & a=$(echo "`wpctl get-volume @DEFAULT_SINK@ | sed 's/.* //'`" '* 100' | bc | sed 's/\..*/%/') ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Volume" "$a"
 
 mod4 + F3
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; pkill -RTMIN+21 dwmblocks
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+ & pkill -RTMIN+21 dwmblocks & a=$(echo "`wpctl get-volume @DEFAULT_SINK@ | sed 's/.* //'`" '* 100' | bc | sed 's/\..*/%/') ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Volume" "$a"
 
 
 F5
@@ -75,8 +75,7 @@ mod4 + Insert
    echo $(grep -v '^#' ~/.local/share/emoji | dmenu -i -l 40 -fn JoyPixels:pixelsize=19 | cut -d' ' -f1) | xclip -i -r -selection clipboard
 
 mod4 + w
-    brave-bin
-    brave-browser-nightly
+    $BROWSER
 
 mod4 + BackSpace
     jgmenu_run > /dev/null
@@ -98,6 +97,7 @@ mod4 + shift + w
 
 mod1 + w
     (killall transmmission-remote-gtk & killall pavucontrol) & wal -i $( cat /tmp/wallpaper_list | shuf -n1 | tee -a /tmp/wallpaper) && pkill -HUP dwm
+    wal -i $( cat /tmp/wallpaper_list | shuf -n1 | tee -a /tmp/wallpaper) && pkill -HUP dwm
     #wal -i $HOME/Wallpapers && pkill -HUP dwm >/dev/null
 
 mod4 + e
@@ -109,4 +109,6 @@ mod1 + Print
 mod4 + slash
     findndo
 
+ctrl + shift + j
+    jdsp_toggle.sh
 

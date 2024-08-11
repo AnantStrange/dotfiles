@@ -201,9 +201,9 @@
     max_icon_size = 25
 
     # Paths to default icons.
-    #icon_path = /usr/share/icons/Infinity/
-    #icon_theme = "Infinity, Adwaita"
-    #enable_recursive_icon_lookup = true
+    icon_path = /usr/share/icons/:$HOME/.local/share/icons/
+    icon_theme = "candy-icons,BeautyLine,breeze-dark,Adwaita"
+    enable_recursive_icon_lookup = true
 
     ### History ###
 
@@ -286,6 +286,7 @@
     mouse_middle_click = do_action
     # mouse_right_click = open_url
     mouse_right_click = context
+
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -447,8 +448,3 @@
 summary = "*"
 script = /home/anant/scripts/alert
 
-[command]
-open_term=st
-
-[shortcuts]
-context = crtl+shift+period
