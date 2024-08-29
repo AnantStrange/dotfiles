@@ -1,8 +1,14 @@
-#! /bin/sh
+#! /bin/bash
 
 # Basic command aliases
 
-( nvim -v>/dev/null 2>&1 ) && alias vi="nvim"
+if command -v nvim > /dev/null 2>&1; then
+    alias vi="nvim"
+    alias nvv="sudo nvim"
+    alias nv="nvim"
+    alias gvim="nvim"
+fi
+
 alias bctl="bluetoothctl"
 alias serve="python3 -m http.server --bind 192.168.0.100 80  --directory"
 alias history="history 0"
@@ -10,7 +16,6 @@ alias hist="history 0"
 alias df="df -h"
 alias du="du -h"
 alias yts="ytfzf -f"
-alias nv="nvim"
 alias pm="pulsemixer"
 alias yt="ytfzf -DNsfq"
 alias gp="grep"
@@ -38,10 +43,8 @@ alias timer="termdown"
 alias pwr="sudo powertop"
 alias hst="history 0"
 alias wifi_pass="nmcli -s -g 802-11-wireless-security.psk connection show"
-alias gvim="nvim"
 alias Pictures="~/Pictures/"
 alias Downloads="~/Downloads/"
-alias nvv="sudo nvim"
 
 alias pdf="zathura "
 alias zth="zathura "
@@ -61,7 +64,7 @@ alias connect='curl -kX POST -d"userId=21BCE3820" -d"password=3282" -d"serviceNa
 
 # ls Alises based on if eza available
 
-if eza > /dev/null 2>&1;then
+if command -v eza > /dev/null 2>&1; then
     alias ls='ls --color=auto'
     alias ll="eza -lgH --icons=always"
     alias la="eza -laagH --icons=always"
@@ -73,15 +76,18 @@ else
     alias l="ls -HG"
 fi
 
+if command -v bat > /dev/null 2>&1; then
+    alias cat="bat"
+fi
+
 # Trash-cli Alias
 
-alias tp="trash-put"
-alias tl="trash-list"
-alias tl="trash-list"
-alias trr="trash-restore"
-( trash --version > /dev/null 2>&1 ) && alias rm="trash-put"
-
-
+if trash --version > /dev/null 2>&1; then
+    alias tp="trash-put"
+    alias tl="trash-list"
+    alias trr="trash-restore"
+    alias rm="trash-put"
+fi
 
 # Distro-base Specific package mangager alias
 
@@ -96,18 +102,18 @@ if [ -e /etc/debian_version ];then
 elif [ -e /etc/gentoo-release ];then
     # -avCD for total upgrade including changed use regardless of upgrade or not
     # -avND for total upgrade including changed use but only if htey have update else no rebuild
-    alias em="sudo emerge -av"
-    alias eq="equery"
-    alias ess="sudo emerge -avs"
-    alias ss="eix"
-    alias get="sudo emerge -av"
-    alias getg="sudo emerge -avg"
-    alias ssd="sudo emerge -av --search-description"
-    alias si="sudo emerge --info"
-    alias qu="equery uses" # Show the use flags for a package
-    alias qd="equery depends" # Show package dependencies
-    alias news="eselect news read" # Show Gentoo news items
-    alias qo="equery belongs" # Show what package owns the file 
+    alias em="sudo emerge -av" # Install or update packages with detailed output and prompt for confirmation
+    alias eq="equery" # Query installed packages or package information
+    alias ess="sudo emerge -avs" # Search for packages with detailed output and prompt for confirmation
+    alias ss="eix" # Search for packages in the Gentoo repository
+    alias get="sudo emerge -av" # Alias for installing packages with detailed output and confirmation
+    alias getg="sudo emerge -avg" # Same as 'get', but with additional verbose output
+    alias ssd="sudo emerge -av --search-description" # Search for packages by description with detailed output
+    alias si="sudo emerge --info" # Display system information relevant to the Gentoo environment
+    alias qu="equery uses" # Show the USE flags enabled or disabled for a specific package
+    alias qd="equery depends" # Show dependencies for a specific package
+    alias news="eselect news read" # Display and read Gentoo news items
+    alias qo="equery belongs" # Determine which package owns a particular file
 else
     alias Qo="pacman -Qo"
     alias get="sudo pacman -S"

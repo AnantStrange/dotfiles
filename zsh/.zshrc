@@ -15,72 +15,72 @@ setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt prompt_subst
 GIT_PROMPT_EXECUTABLE="haskell"
 
-source ~/.local/share/zsh/zsh-git-prompt/zshrc.sh
-function update_prompt() {
-    local PR_USER PR_USER_OP PR_PROMPT PR_HOST
-
-    # Check the UID
-    if [[ $UID -ne 0 ]]; then # normal user
-        PR_USER='%F{green}%n%f'
-        PR_USER_OP='%F{green}%#%f'
-        PR_PROMPT='%f➤ %f'
-    else # root
-        PR_USER='%F{red}%n%f'
-        PR_USER_OP='%F{red}%#%f'
-        PR_PROMPT='%F{red}➤ %f'
-    fi
-
-    # Check if we are on SSH or not
-    if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-        PR_HOST='%F{red}%M%f' # SSH
-    else
-        PR_HOST='%F{green}%m%f' # no SSH
-    fi
-
-    # Check if we are in a Python virtual environment
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        local venv_indicator=' (venv)'
-    else
-        local venv_indicator=''
-    fi
-
-    local user_host="${PR_USER}%F{cyan}@${PR_HOST} "
-    local current_dir="%B%F{blue}%~%f%b"
-    local current_dir="%B%F{blue}%~${venv_indicator}%f%b"  # Include venv indicator here
-
-
-    PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
-╰─$PR_PROMPT"
-}
-
-chpwd_functions+=(update_prompt)
-precmd_functions+=(update_prompt) 
-update_prompt
-
-function preexec() {
-    timer=$(date +%s%3N)
-}
-
-function precmd() {
-    if [ $timer ]; then
-        local now=$(date +%s%3N)
-        local d_ms=$(($now-$timer))
-        local d_s=$((d_ms / 1000))
-        local ms=$((d_ms % 1000))
-        local s=$((d_s % 60))
-        local m=$(((d_s / 60) % 60))
-        local h=$((d_s / 3600))
-        if ((h > 0)); then elapsed=${h}h${m}m
-        elif ((m > 0)); then elapsed=${m}m${s}s
-        elif ((s >= 10)); then elapsed=${s}.$((ms / 100))s
-        elif ((s > 0)); then elapsed=${s}.$((ms / 10))s
-        else elapsed=${ms}ms
-        fi
-
-        export RPROMPT="%F{cyan}${elapsed} %{$reset_color%}"
-        unset timer
-    fi
-}
+# source ~/.local/share/zsh/zsh-git-prompt/zshrc.sh
+# function update_prompt() {
+#     local PR_USER PR_USER_OP PR_PROMPT PR_HOST
+#
+#     # Check the UID
+#     if [[ $UID -ne 0 ]]; then # normal user
+#         PR_USER='%F{green}%n%f'
+#         PR_USER_OP='%F{green}%#%f'
+#         PR_PROMPT='%f➤ %f'
+#     else # root
+#         PR_USER='%F{red}%n%f'
+#         PR_USER_OP='%F{red}%#%f'
+#         PR_PROMPT='%F{red}➤ %f'
+#     fi
+#
+#     # Check if we are on SSH or not
+#     if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+#         PR_HOST='%F{red}%M%f' # SSH
+#     else
+#         PR_HOST='%F{green}%m%f' # no SSH
+#     fi
+#
+#     # Check if we are in a Python virtual environment
+#     if [[ -n "$VIRTUAL_ENV" ]]; then
+#         local venv_indicator=' (venv)'
+#     else
+#         local venv_indicator=''
+#     fi
+#
+#     local user_host="${PR_USER}%F{cyan}@${PR_HOST} "
+#     local current_dir="%B%F{blue}%~%f%b"
+#     local current_dir="%B%F{blue}%~${venv_indicator}%f%b"  # Include venv indicator here
+#
+#
+#     PROMPT="╭─${user_host} ${current_dir} $(git_super_status) 
+# ╰─$PR_PROMPT"
+# }
+#
+# chpwd_functions+=(update_prompt)
+# precmd_functions+=(update_prompt) 
+# update_prompt
+#
+# function preexec() {
+#     timer=$(date +%s%3N)
+# }
+#
+# function precmd() {
+#     if [ $timer ]; then
+#         local now=$(date +%s%3N)
+#         local d_ms=$(($now-$timer))
+#         local d_s=$((d_ms / 1000))
+#         local ms=$((d_ms % 1000))
+#         local s=$((d_s % 60))
+#         local m=$(((d_s / 60) % 60))
+#         local h=$((d_s / 3600))
+#         if ((h > 0)); then elapsed=${h}h${m}m
+#         elif ((m > 0)); then elapsed=${m}m${s}s
+#         elif ((s >= 10)); then elapsed=${s}.$((ms / 100))s
+#         elif ((s > 0)); then elapsed=${s}.$((ms / 10))s
+#         else elapsed=${ms}ms
+#         fi
+#
+#         export RPROMPT="%F{cyan}${elapsed} %{$reset_color%}"
+#         unset timer
+#     fi
+# }
 
 
 # git clone https://github.com/agkozak/zsh-z.git ~/.local/share/zsh/zsh-z
@@ -133,3 +133,8 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 
 # zprof
+
+source "/home/anant/.local/share/cargo/env"
+
+# eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(starship init zsh)"
