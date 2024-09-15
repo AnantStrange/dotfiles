@@ -134,7 +134,6 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # zprof
 
-source "/home/anant/.local/share/cargo/env"
-
 # eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"

@@ -161,3 +161,16 @@ alias "..."="cd ../.."
 mkcd() {
     mkdir -p "$1" && cd "$1" || return
 }
+
+getchatlog() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: scpchatlog <destination_directory>"
+        return 1
+    fi
+
+    local destination="$1"
+    scp strange:~/LeChatScrape/chatlog.txt strange:~/LeChatScrape/chatlog.csv "$destination"
+}
+
+
+alias sf="fj --host git.strangeworld.blog"

@@ -302,7 +302,7 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "{color3}"
+    background = "#1a1b26"
     foreground = "{foreground}"
     frame_color = "{color5}"
     timeout = 6
@@ -310,7 +310,7 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "{color3}"
+    background = "#1a1b26"
     foreground = "{foreground}"
     frame_color = "{color5}"
     timeout = 6
