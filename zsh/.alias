@@ -78,6 +78,7 @@ fi
 
 if command -v bat > /dev/null 2>&1; then
     alias cat="bat"
+    alias ccat="/usr/bin/cat"
 fi
 
 # Trash-cli Alias

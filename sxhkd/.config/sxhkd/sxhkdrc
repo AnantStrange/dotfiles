@@ -88,6 +88,9 @@ mod4 + w
 mod4 + BackSpace
     jgmenu_run > /dev/null
 
+mod4 + shift + BackSpace
+     ~/.config/rofi/launchers/type-2/launcher.sh
+
 mod4 + shift + p
     passmenu
 

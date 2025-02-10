@@ -1,7 +1,11 @@
 # zmodload zsh/zprof
 set -o emacs
 
+# Enable menu selection for completion
 zstyle ':completion:*' menu select
+
+# Make completion case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 HIST_STAMPS="dd/mm/yyyy"
 HISTSIZE=10000000
