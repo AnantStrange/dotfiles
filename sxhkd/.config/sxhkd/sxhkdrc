@@ -1,14 +1,18 @@
 mod4 + y
 	ytfzf -DNsf
 
-mod4 + Print
-	maim -f jpg -m 10 -s | tee /home/anant/Pictures/Screenshot_$(date "+%d_%b_%H:%M").jpg | xclip -selection clipboard -t image/png
-
 Print
-	maim -f jpg -m 10  | tee /home/anant/Pictures/Screenshot_$(date "+%d_%b_%H:%M").jpg | xclip -selection clipboard -t image/png
+	screenshot.sh -f
+
+mod4 + Print
+	screenshot.sh -s
 
 mod4 + shift + Print
-	name_screenshot
+	screenshot.sh -sn
+
+mod4 + mod1 + shift + Print
+	screenshot.sh -fn
+
 F12
 	light -A 5 ; a=$(light -G) ; notify-send -t 5000 -h int:value:$a -h string:synchronous:progress "Brightness" "$a"
 
@@ -62,10 +66,7 @@ mod1 + m
     searchnplay
 
 mod4 + shift + q
-	/home/anant/scripts/power
-
-mod4 + shift + i
-	teams --disable-seccomp-filter-sandbox
+	power
 
 mod4 + shift + r
 	dmenurecord
@@ -74,7 +75,7 @@ control + shift + r
 	dmenurecord kill
 
 mod4 + r
-	/home/anant/scripts/reload
+    reload
 
 mod4 + shift + l
 	i3lock-fancy -p
@@ -83,7 +84,7 @@ mod4 + Insert
    echo $(grep -v '^#' ~/.local/share/emoji | dmenu -i -l 40 -fn JoyPixels:pixelsize=19 | cut -d' ' -f1) | xclip -i -r -selection clipboard
 
 mod4 + w
-    $BROWSER
+    open_browser.sh
 
 mod4 + BackSpace
     jgmenu_run > /dev/null

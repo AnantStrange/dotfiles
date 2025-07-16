@@ -1,0 +1,8 @@
+[user]
+    name = Default
+    email = Default@Default.com
+
+[alias]
+    wt = worktree
+    wtls = worktree list
+

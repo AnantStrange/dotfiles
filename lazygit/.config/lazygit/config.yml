@@ -1,0 +1,4 @@
+keybinding:
+  universal:
+    commitChanges: "<C-s>"  # Change this to any other key you prefer
+
