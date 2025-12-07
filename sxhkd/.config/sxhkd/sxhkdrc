@@ -66,16 +66,16 @@ mod1 + m
     searchnplay
 
 mod4 + shift + q
-	power
+	power.sh
 
 mod4 + shift + r
-	dmenurecord
+	dmenurecord.sh
 
 control + shift + r
-	dmenurecord kill
+	dmenurecord.sh kill
 
 mod4 + r
-    reload
+    reload.sh
 
 mod4 + shift + l
 	i3lock-fancy -p
@@ -93,16 +93,16 @@ mod4 + shift + BackSpace
      ~/.config/rofi/launchers/type-2/launcher.sh
 
 mod4 + shift + p
-    passmenu
+    passmenu.sh
 
 mod4 + F9
-    dmenumount
+    dmenumount.sh
 
 mod4 + F10
-    dmenuumount
+    dmenuumount.sh
 
 mod1 + shift + p
-    passgen
+    passgen.sh
 
 mod4 + shift + w
     btmenu
@@ -114,13 +114,13 @@ mod4 + e
     thunar
 
 mod1 + Print
-    dmenu_wifi
+    dmenu_wifi.sh
 
 mod4 + slash
-    findndo
+    findndo.sh
 
 mod4 + shift + slash
-    findndo -d
+    findndo.sh -d
 
 ctrl + shift + j
     jdsp_toggle.sh

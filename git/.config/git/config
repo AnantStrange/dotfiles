@@ -6,3 +6,5 @@
     wt = worktree
     wtls = worktree list
 
+[init]
+	defaultBranch = main

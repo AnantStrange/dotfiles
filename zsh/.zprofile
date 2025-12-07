@@ -50,6 +50,7 @@ export PASSWORD_STORE_DIR="$HOME/.local/share/.password-store"
 export GHCUP_USE_XDG_DIRS=true
 export W3M_DIR="$XDG_DATA_HOME"/w3m
 export PYTHONSTARTUP="/etc/python/pythonrc"
+export PYTHONPATH="$PYTHONPATH:$HOME/scripts"
 export ZSHZ_DATA="$HOME/.local/share/z"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/jvm/java-11-openjdk/lib"
 export ZSH="$HOME/.config/oh-my-zsh"

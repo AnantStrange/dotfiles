@@ -85,7 +85,9 @@ if trash --version > /dev/null 2>&1; then
     alias tp="trash-put"
     alias tl="trash-list"
     alias trr="trash-restore"
-    alias rm="trash-put"
+    rm(){
+            trash-put "$@"
+        }
 fi
 
 # Distro-base Specific package mangager alias
@@ -152,10 +154,18 @@ alias ureload="systemctl --user reload"
 alias ustatus="systemctl --user status"
 alias uenable="systemctl --user enable"
 alias udisable="systemctl --user disable"
+gdisk(){
+    if [[ $# -le 1 ]];
+    then
+        lsblk -o 'NAME,MOUNTPOINTS,SIZE,FSTYPE,PARTLABEL,PARTUUID';
+    else
+        lsblk -o 'NAME,MOUNTPOINTS,fsused,fsuse%,fsavail,SIZE,FSTYPE,PARTLABEL,PARTUUID';
+    fi;
+    }
 
-alias gdisk="lsblk -o 'NAME,MOUNTPOINTS,fsused,fsuse%,fsavail,SIZE,FSTYPE,PARTLABEL,PARTUUID'"
 alias ".."="cd .."
 alias "..."="cd ../.."
+alias "...."="cd ../../.."
 
 mkcd() {
     mkdir -p "$1" && cd "$1" || return
@@ -185,3 +195,23 @@ wcl() {
   echo "Hidden: $hidden"
 }
 
+whla() {
+    path=$(which "$1")
+    if alias la >/dev/null 2>&1; then
+        la "$path"
+    else
+        ls -la "$path"
+    fi
+}
+
+whnv(){
+    path=$(which "$1");
+    exec nvim "$path" 
+}
+
+madd() {
+    for url in "$@"; do
+        echo "$url" >> "$HOME/Downloads/links"
+        echo "Added: $url"
+    done
+}

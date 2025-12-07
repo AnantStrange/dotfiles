@@ -19,15 +19,8 @@ setopt prompt_subst
 zmodload -i zsh/complist
 
 execute_myscript() {
-    quickedit
+    quickedit.sh
     zle reset-prompt
-}
-
-madd() {
-    for url in "$@"; do
-        echo "$url" >> "$HOME/Downloads/links"
-        echo "Added: $url"
-    done
 }
 
 zle -N execute_myscript
