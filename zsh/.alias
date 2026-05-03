@@ -50,12 +50,12 @@ alias lv="% disown %1 %2"
 alias gits="git status"
 
 
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
-alias xbindkeys=xbindkeys -f "$XDG_CONFIG_HOME/xbindkeys/config"
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+alias xbindkeys='xbindkeys -f "$XDG_CONFIG_HOME/xbindkeys/config"'
 alias ipa="ip a"
 alias rmm="/usr/bin/rm"
 alias clone="git clone"
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 
 alias connect='curl -kX POST -d"userId=21BCE3820" -d"password=3282" -d"serviceName=ProntoAuthentication" -d"Submit22=Login" "https://phc.prontonetworks.com/cgi-bin/authlogin?URI=http://captive.apple.com/hotspot-detect.html" >/dev/null'
@@ -206,7 +206,7 @@ whla() {
 
 whnv(){
     path=$(which "$1");
-    exec nvim "$path" 
+    nvim "$path" 
 }
 
 madd() {
@@ -215,3 +215,8 @@ madd() {
         echo "Added: $url"
     done
 }
+
+
+alias sshphone="ssh -p 8022 u0_a323@10.0.0.1"
+
+
